@@ -10,10 +10,13 @@ public class UserActionFactory extends ActionFactory {
 		// TODO Auto-generated method stub
 		Action action = null;
 		if("joinform".equals(actionName)) {
-//			action = new JoinFormAction();
+			action = new JoinFormAction();
 			
-		}else {
-			
+		}else if("join".equals(action)){
+//			action = new JoinAction();
+		}
+		else {
+			action = new MainAction();
 		}
 		
 		return action;

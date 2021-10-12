@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.douzone.mysite.mvc.MainActionFactory;
+import com.douzone.mysite.mvc.UserActionFactory;
+import com.douzone.web.mvc.Action;
+import com.douzone.web.mvc.ActionFactory;
 import com.douzone.web.util.MvcUtil;
 
 
@@ -18,9 +22,14 @@ public class MainController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		request.setCharacterEncoding("UTF-8");
 		
-		MvcUtil.forward("WEB-INF/views/main/index.jsp", request, response);
+		String actionName = request.getParameter("cmd");
+
+		ActionFactory af = new MainActionFactory();
+		Action action = af.getAction(actionName);
+		action.execute(request,response);
 
 	}
 
