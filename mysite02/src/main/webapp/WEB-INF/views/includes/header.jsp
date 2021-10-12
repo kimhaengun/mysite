@@ -3,7 +3,7 @@
 <div id="header">
 	<h1>MySite</h1>
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/uer?cmd=loginform">로그인</a>
+		<li><a href="<%=request.getContextPath()%>/user?cmd=loginform">로그인</a>
 		<li>
 		<li><a href="<%=request.getContextPath()%>/user?cmd=joinform">회원가입</a>
 		<li>
