@@ -115,4 +115,8 @@ public class UserDao {
 
 		return conn;
 	}// end Connection
+	public UserVo findByNo(Long no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
