@@ -21,6 +21,7 @@ public class UpdateFormAction implements Action {
 		//접근 제한 걸기(Access Control) /보안, 인증체크
 		HttpSession session = request.getSession();
 	 	UserVo authuser = (UserVo) session.getAttribute("authUser");
+	 	
 		if(authuser == null) {
 			MvcUtil.redirect(request.getContextPath(), request, response);
 			return;
@@ -29,6 +30,7 @@ public class UpdateFormAction implements Action {
 		Long no = authuser.getNo();
 		UserVo vo = new UserDao().findByNo(no);
 		request.setAttribute("user", vo);
+		
 		
 		MvcUtil.forward("user/updateform", request, response);
 	}
