@@ -17,6 +17,7 @@
 				<form id="search_form" action="" method="post">
 					<input type="text" id="kwd" name="kwd" value="">
 					<input type="submit" value="찾기">
+					<input type="hidden" name="userno" value="${authUser.no}"/>
 				</form>
 				<table class="tbl-ex">
 					<tr>
@@ -38,10 +39,12 @@
 					<tr>
 						<td>2</td>
 						<td style="text-align:left; padding-left: ${20*vo.depth}px">
-							<img alt="" src="${pageContext.servletContext.contextPath }/assets/images/reply.png"><a href="">두 번째 글입니다.</a></td>
+							<img alt="" src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
+							<a href="${pageContext.request.contextPath }/board?cmd=viewform">두 번째 글입니다.</a></td>
 						<td>안대혁</td>
 						<td>3</td>
 						<td>2015-10-02 12:04:12</td>
+						
 						<td><a href="" class="del">삭제</a></td>
 					</tr>
 					<tr>
@@ -68,9 +71,11 @@
 				</div>					
 				<!-- pager 추가 -->
 				
+				<c:if test="${not empty authUser }">
 				<div class="bottom">
-					<a href="" id="new-book">글쓰기</a>
-				</div>				
+					<a href="${pageContext.request.contextPath }/board?cmd=writeform" id="new-book">글쓰기</a>
+				</div>
+				</c:if>				
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/includes/navigation.jsp">
