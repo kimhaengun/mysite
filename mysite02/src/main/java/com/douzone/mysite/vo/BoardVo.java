@@ -10,13 +10,21 @@ public class BoardVo {
 	private Long orderNo;
 	private Long depth;
 	private Long userNo;
+	private String userName;
 	
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate="
 				+ regDate + ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth + ", userNo=" + userNo
-				+ "]";
+				+ ", userName=" + userName + "]";
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 	public Long getNo() {
 		return no;
 	}

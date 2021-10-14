@@ -27,48 +27,60 @@
 						<th>조회수</th>
 						<th>작성일</th>
 						<th>&nbsp;</th>
-					</tr>				
-					<tr>
-						<td>3</td>
-						<td style="text-align:left; padding-left: 0px"><a href="">세 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-11 12:04:20</td>
-						<td><a href="" class="del">삭제</a></td>
 					</tr>
+				<c:set var="count" value="${fn:length(list) }" />
+				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td>2</td>
+						<td>${count-status.index }
+						<input type="hidden" value="${vo.userNo}"/>
+						</td>
 						<td style="text-align:left; padding-left: ${20*vo.depth}px">
+						<c:if test="${vo.depth > 0 }">
 							<img alt="" src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
-							<a href="${pageContext.request.contextPath }/board?cmd=viewform">두 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-02 12:04:12</td>
-						
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td style="text-align:left padding-left: 0px;"><a href="">첫 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-09-25 07:24:32</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
+						</c:if>
+						<a href="${pageContext.request.contextPath }/board?cmd=viewform&no=${vo.no}">${vo.title }</a></td>
+						<td>${vo.userName }</td>
+						<td>${vo.hit }</td>
+						<td>${vo.regDate }</td>
+						<td>
+						<c:if test="${authUser.no eq vo.userNo }">
+							<a href="${pageContext.request.contextPath }/board?cmd=delete&no=${vo.no}" class="dell">삭제</a>						
+						</c:if>
+						</td>
+					</tr>		
+				</c:forEach>
+
 				</table>
 				
 				<!-- pager 추가 -->
+				
+				
 				<div class="pager">
 					<ul>
 						<li><a href="">◀</a></li>
 						<li><a href="">1</a></li>
-						<li class="selected">2</li>
+						<li class="">${page.viewCount}</li>
 						<li><a href="">3</a></li>
 						<li>4</li>
 						<li>5</li>
 						<li><a href="">▶</a></li>
 					</ul>
-				</div>					
+				</div>
+				
+				
+					
+				<div class="pager">
+					<ul>
+					<c:forEach  var ="i" begin="1" end="${page.viewCount }">
+						<li><a href="pageContext.request.contextPath }/board?cmd=delete&no=${i}">${i }</a></li>
+					</c:forEach>
+					<c:forEach var ="j" begin="${page.viewCount+1 }" end="5">
+						<li>${j }</li>
+					</c:forEach>
+					</ul>
+				</div>
+
+									
 				<!-- pager 추가 -->
 				
 				<c:if test="${not empty authUser }">
