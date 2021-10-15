@@ -308,7 +308,7 @@ public class BoardDao {
 		return vo;
 	}
 	
-	public List<BoardVo> findAll() {
+	public List<BoardVo> findAll(Long page) {
 		// TODO Auto-generated method stub
 		List<BoardVo> result = new ArrayList<BoardVo>();
 		Connection conn = null;
@@ -318,9 +318,10 @@ public class BoardDao {
 			conn = getConnection();
 			//3. SQL 준비
 			String sql = "select b.no, b.title, u.name, b.hit, b.reg_date, b.group_no, b.order_no, b.depth, b.user_no \r\n"
-					+ "from board b,user u where b.user_no = u.no order by b.group_no desc,b.order_no asc limit 0,5";
+					+ "from board b,user u where b.user_no = u.no order by b.group_no desc,b.order_no asc limit ?,5";
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setLong(1, page);
 			//insert, update, delete 문 == executeUpdate
 			//결과 값이 int
 			rs = pstmt.executeQuery();

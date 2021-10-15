@@ -4,6 +4,6 @@
 	<ul>
 		<li><a href="<%=request.getContextPath()%>">안대혁</a></li>
 		<li><a href="<%=request.getContextPath()%>/gb?cmd=list">방명록</a></li>
-		<li><a href="<%=request.getContextPath()%>/board?cmd=list">게시판</a></li>
+		<li><a href="<%=request.getContextPath()%>/board?cmd=list&page=1">게시판</a></li>
 	</ul>
 </div>

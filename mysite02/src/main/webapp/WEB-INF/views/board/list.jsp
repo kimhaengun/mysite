@@ -31,7 +31,7 @@
 				<c:set var="count" value="${fn:length(list) }" />
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td>${count-status.index }
+						<td>${page.totalCount-status.index }
 						<input type="hidden" value="${vo.userNo}"/>
 						</td>
 						<td style="text-align:left; padding-left: ${20*vo.depth}px">
@@ -52,27 +52,11 @@
 
 				</table>
 				
-				<!-- pager 추가 -->
-				
-				
-				<div class="pager">
-					<ul>
-						<li><a href="">◀</a></li>
-						<li><a href="">1</a></li>
-						<li class="">${page.viewCount}</li>
-						<li><a href="">3</a></li>
-						<li>4</li>
-						<li>5</li>
-						<li><a href="">▶</a></li>
-					</ul>
-				</div>
-				
-				
-					
+				<!-- pager 추가 / 연습 -->					
 				<div class="pager">
 					<ul>
 					<c:forEach  var ="i" begin="1" end="${page.viewCount }">
-						<li><a href="pageContext.request.contextPath }/board?cmd=delete&no=${i}">${i }</a></li>
+						<li><a href="${pageContext.request.contextPath }/board?cmd=list&page=${i}">${i }</a></li>
 					</c:forEach>
 					<c:forEach var ="j" begin="${page.viewCount+1 }" end="5">
 						<li>${j }</li>
@@ -80,9 +64,31 @@
 					</ul>
 				</div>
 
-									
-				<!-- pager 추가 -->
-				
+				<!-- pager 추가 / 이게 메인-->					
+				<div class="pager">
+					<ul>
+					<c:forEach  var ="i" begin="1" end="5">
+						<c:choose>
+						
+							<c:when test="${page.viewCount >= 5 }">
+								<li><a href="${pageContext.request.contextPath }/board?cmd=list&page=${i}">${i }</a></li>
+							</c:when>
+							
+							<c:otherwise>
+							<c:if test="${page.viewCount >= i}">
+									<li><a href="${pageContext.request.contextPath }/board?cmd=list&page=${i}">${i }</a></li>
+							</c:if>
+							<c:if test="${page.viewCount < i }">
+									<li>${i }</li>
+							</c:if>
+							</c:otherwise>
+							
+						</c:choose>
+					</c:forEach>
+					
+					</ul>
+				</div>
+								
 				<c:if test="${not empty authUser }">
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/board?cmd=writeform" id="new-book">글쓰기</a>

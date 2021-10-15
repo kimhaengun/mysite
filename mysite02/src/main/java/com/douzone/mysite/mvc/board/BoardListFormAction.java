@@ -31,9 +31,10 @@ public class BoardListFormAction implements Action {
 		
 		request.setAttribute("page", vo);
 		
-		
-		List<BoardVo> list = new BoardDao().findAll();
-
+		String spage = request.getParameter("page");
+		Long lpage = Long.parseLong(spage);
+		Long page = (lpage-1)*5;
+		List<BoardVo> list = new BoardDao().findAll(page);
 		request.setAttribute("list", list);
 		
 		MvcUtil.forward("board/list", request, response);

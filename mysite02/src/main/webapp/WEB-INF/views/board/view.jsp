@@ -37,7 +37,7 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board?cmd=list">글목록</a>
+					<a href="${pageContext.request.contextPath }/board?cmd=list&page=1">글목록</a>
 					<c:if test="${not empty authUser }">
 						<a href="${pageContext.request.contextPath }/board?cmd=replyform&no=${vo.no}">댓글달기</a>
 					</c:if>

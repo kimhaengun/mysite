@@ -24,7 +24,7 @@ public class BoarddeleteAction implements Action {
 		
 		new BoardDao().delete(vo);
 		
-		MvcUtil.redirect("/mysite02/board?cmd=list", request, response);
+		MvcUtil.redirect("/mysite02/board?cmd=list&page=1", request, response);
 		
 	}
 
