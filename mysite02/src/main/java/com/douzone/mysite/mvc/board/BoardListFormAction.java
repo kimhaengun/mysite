@@ -27,7 +27,7 @@ public class BoardListFormAction implements Action {
 		Long page = (lpage-1)*5;
 		List<BoardVo> list = new BoardDao().findAll(page);
 		
-		vo.setFirstViewCount(lpage);
+		vo.setFirstViewCount(1L);
 		vo.setEndViewCount((vo.getFirstViewCount()-1)+5);
 		if(totalcount % 5 > 0) {
 			Long viewcount = totalcount/5 +1; 
@@ -36,19 +36,21 @@ public class BoardListFormAction implements Action {
 			Long viewcount = totalcount/5;
 			vo.setViewCount(viewcount);
 		}
-		
-		
-		
 
-		
 		vo.setPage(lpage);
 		request.setAttribute("page", vo);
 		request.setAttribute("list", list);
 		if(request.getParameter("next")!=null) {
-
+			String snext = request.getParameter("next");
+			Long next = Long.parseLong(snext);
+			vo.setFirstViewCount(next);
+			vo.setEndViewCount((vo.getFirstViewCount()-1)+5);
 			MvcUtil.forward("board/list", request, response);			
 		}else if(request.getParameter("before") !=null){
-
+			String snext = request.getParameter("before");
+			Long next = Long.parseLong(snext);
+			vo.setFirstViewCount(next);
+			vo.setEndViewCount((vo.getFirstViewCount()-1)+5);
 			MvcUtil.forward("board/list", request, response);
 		}
 		else {	MvcUtil.forward("board/list", request, response);

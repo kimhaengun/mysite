@@ -68,21 +68,20 @@
 				<!-- pager 추가 / 이게 메인-->					
 				<div class="pager">
 					<ul>
+					<!-- 이전 버튼 -->
 					<c:if test="${page.firstViewCount > 1 }">
-						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page-1}&before=1">이전</a>
+						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page}&before=${page.firstViewCount-1}">이전</a>
 					</c:if>
 					
+					<!-- 페이지 수 -->					
 					<c:forEach  var ="i" begin="${page.firstViewCount }" end="${page.endViewCount }">
 						<c:choose>
 						
-							<c:when test="${page.viewCount >= 5 }">
+							<c:when test="${page.viewCount >= i }">
 								<li><a href="${pageContext.request.contextPath }/board?cmd=list&page=${i}">${i }</a></li>
 							</c:when>
 							
 							<c:otherwise>
-							<c:if test="${page.viewCount >= i}">
-									<li><a href="${pageContext.request.contextPath }/board?cmd=list&page=${i}">${i }</a></li>
-							</c:if>
 							<c:if test="${page.viewCount < i }">
 									<li>${i }</li>
 							</c:if>
@@ -90,8 +89,10 @@
 							
 						</c:choose>
 					</c:forEach>
+					
+					<!-- 다음 버튼 -->
 					<c:if test="${page.firstViewCount < page.viewCount }">
-						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page+1}&next=1">다음</a>
+						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page}&next=${page.firstViewCount+1 }">다음</a>
 					</c:if>
 					</ul>
 				</div>
