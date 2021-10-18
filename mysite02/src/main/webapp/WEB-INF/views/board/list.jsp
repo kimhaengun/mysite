@@ -69,8 +69,9 @@
 				<div class="pager">
 					<ul>
 					<c:if test="${page.firstViewCount > 1 }">
-						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page}&after=1">이전</a>
+						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page-1}&before=1">이전</a>
 					</c:if>
+					
 					<c:forEach  var ="i" begin="${page.firstViewCount }" end="${page.endViewCount }">
 						<c:choose>
 						
@@ -89,7 +90,9 @@
 							
 						</c:choose>
 					</c:forEach>
-						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page}&next=1">다음</a>
+					<c:if test="${page.firstViewCount < page.viewCount }">
+						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page+1}&next=1">다음</a>
+					</c:if>
 					</ul>
 				</div>
 								

@@ -7,6 +7,7 @@ public class PageVo {
 	private Long firstViewCount; //시작 페이지
 	private Long endViewCount; // 끝 페이지
 	private Long page; //현재 페이지
+	
 	@Override
 	public String toString() {
 		return "PageVo [totalCount=" + totalCount + ", count=" + count + ", viewCount=" + viewCount
