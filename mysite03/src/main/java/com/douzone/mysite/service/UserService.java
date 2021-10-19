@@ -15,10 +15,21 @@ public class UserService {
 		// TODO Auto-generated method stub
 		userRepository.insert(vo);
 	}
-
+	
+	public UserVo getUser(Long no) {
+		
+		return userRepository.findByNo(no);
+	}
+	
+	
 	public UserVo getUser(String email, String password) {
 		
 		return userRepository.findByEmailAndPassword(email,password);
+	}
+
+	public void updateUser(UserVo userVo) {
+		// TODO Auto-generated method stub
+		userRepository.update(userVo);
 	}
 	
 }
