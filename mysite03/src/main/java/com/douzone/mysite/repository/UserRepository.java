@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
+import com.douzone.mysite.exception.UserRepositoryExcetion;
 import com.douzone.mysite.vo.UserVo;
 
 @Repository
@@ -90,7 +91,7 @@ public class UserRepository {
 		}// end try ~ finally
 		return result;		
 	}	
-	public UserVo findByNo(Long no) {
+	public UserVo findByNo(Long no) throws UserRepositoryExcetion {
 		// TODO Auto-generated method stub
 		UserVo vo = null;
 		Connection conn = null;
@@ -120,7 +121,7 @@ public class UserRepository {
 			}
 
 		}catch(SQLException e) {
-			System.out.println("error : "+e);
+			throw new UserRepositoryExcetion(e.toString());
 		}finally {
 			try {
 				if(rs != null) {
