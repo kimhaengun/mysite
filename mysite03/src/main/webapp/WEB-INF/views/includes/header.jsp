@@ -9,16 +9,16 @@
 	<ul>
 		<c:choose>
 			<c:when test="${empty authUser }">
-				<li><a href="<%=request.getContextPath()%>/user?cmd=loginform">로그인</a>
+				<li><a href="<%=request.getContextPath()%>/user/login">로그인</a>
 				<li>
-				<li><a href="<%=request.getContextPath()%>/user?cmd=joinform">회원가입</a>
+				<li><a href="<%=request.getContextPath()%>/user/join">회원가입</a>
 				<li>
 			</c:when>
 
 			<c:otherwise>
-				<li><a href="<%=request.getContextPath()%>/user?cmd=updateform">회원정보수정</a>
+				<li><a href="<%=request.getContextPath()%>/user/update">회원정보수정</a>
 				<li>
-				<li><a href="<%=request.getContextPath()%>/user?cmd=logout">로그아웃</a>
+				<li><a href="<%=request.getContextPath()%>/user/logout">로그아웃</a>
 				<li>
 				<li>${authUser.name }님안녕하세요^^;</li>
 			</c:otherwise>
