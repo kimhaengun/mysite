@@ -144,7 +144,7 @@ public class UserRepository {
 	}
 	
 	
-	public UserVo findByEmailAndPassword(String email,String password) throws UserRepositoryExcetion {
+	public UserVo findByEmailAndPassword(String email,String password)  {
 		// TODO Auto-generated method stub
 		UserVo vo = null;
 		Connection conn = null;
@@ -153,7 +153,7 @@ public class UserRepository {
 		try {
 			conn = getConnection();
 			//3. SQL 준비
-			String sql = "selects no,name from user where email = ? and password = ?";
+			String sql = "select no,name from user where email = ? and password = ?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, email);
@@ -172,7 +172,7 @@ public class UserRepository {
 			}
 
 		}catch(SQLException e) {
-			throw new UserRepositoryExcetion(e.toString());
+			System.out.println("error : "+e);
 		}finally {
 			try {
 				if(rs != null) {
