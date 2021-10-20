@@ -32,19 +32,20 @@
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
 						<td>${page.totalCount-status.index }
-						<input type="hidden" value="${vo.userNo}"/>
+						<input type="hidden" name="userNo" value="${vo.userNo}"/>
 						</td>
 						<td style="text-align:left; padding-left: ${20*vo.depth}px">
 						<c:if test="${vo.depth > 0 }">
 							<img alt="" src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
 						</c:if>
-						<a href="${pageContext.request.contextPath }/board?cmd=viewform&no=${vo.no}">${vo.title }</a></td>
+						<a href="${pageContext.request.contextPath }/board/viewform/${vo.no}">${vo.title }</a></td>
 						<td>${vo.userName }</td>
 						<td>${vo.hit }</td>
 						<td>${vo.regDate }</td>
 						<td>
 						<c:if test="${authUser.no eq vo.userNo }">
-							<a href="${pageContext.request.contextPath }/board?cmd=delete&no=${vo.no}" class="dell">삭제</a>						
+							<a href="${pageContext.request.contextPath }/board/delete/${vo.no}" class="dell">삭제</a>						
+							<input type="hidden" name="tableNo" value="${vo.no }" />
 						</c:if>
 						</td>
 					</tr>		
@@ -70,7 +71,7 @@
 					<ul>
 					<!-- 이전 버튼 -->
 					<c:if test="${page.firstViewCount > 1 }">
-						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page}&before=${page.firstViewCount-1}">이전</a>
+						<a href="${pageContext.request.contextPath }/board/${page.page}/e/${page.firstViewCount-1}">이전</a>
 					</c:if>
 					
 					<!-- 페이지 수 -->					
@@ -78,7 +79,7 @@
 						<c:choose>
 						
 							<c:when test="${page.viewCount >= i }">
-								<li><a href="${pageContext.request.contextPath }/board?cmd=list&page=${i}">${i }</a></li>
+								<li><a href="${pageContext.request.contextPath }/board/${i}">${i }</a></li>
 							</c:when>
 							
 							<c:otherwise>
@@ -92,14 +93,14 @@
 					
 					<!-- 다음 버튼 -->
 					<c:if test="${page.firstViewCount < page.viewCount }">
-						<a href="${pageContext.request.contextPath }/board?cmd=list&page=${page.page}&next=${page.firstViewCount+1 }">다음</a>
+						<a href="${pageContext.request.contextPath }/board/${page.page}/e/${page.firstViewCount+1 }">다음</a>
 					</c:if>
 					</ul>
 				</div>
 								
 				<c:if test="${not empty authUser }">
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board?cmd=writeform" id="new-book">글쓰기</a>
+					<a href="${pageContext.request.contextPath }/board/write" id="new-book">글쓰기</a>
 				</div>
 				</c:if>				
 			</div>

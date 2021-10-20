@@ -15,10 +15,11 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board?cmd=boardupdate&no=${vo.no}">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/update">
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">글수정</th>
+							<input type="hidden" name="no" value="${vo.no }"/>
 						</tr>
 						<tr>
 							<td class="label">제목</td>

@@ -15,9 +15,9 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board?cmd=write">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/write">
 					<input type = "hidden" name = "a" value="write">
-					<input type="hidden" name="userno" value="${authUser.no}"/>
+					<input type="hidden" name="userNo" value="${authUser.no}"/>
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">글쓰기</th>
@@ -34,7 +34,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="${pageContext.request.contextPath }/board?cmd=list&page=1">취소</a>
+						<a href="${pageContext.request.contextPath }/board/1">취소</a>
 						<input type="submit" value="등록">
 					</div>
 				</form>				

@@ -27,6 +27,7 @@ public class BoardListFormAction implements Action {
 		Long page = (lpage-1)*5;
 		List<BoardVo> list = new BoardDao().findAll(page);
 		
+		
 		if(totalcount % 5 > 0) {
 			Long viewcount = totalcount/5 +1; 
 			vo.setViewCount(viewcount);
