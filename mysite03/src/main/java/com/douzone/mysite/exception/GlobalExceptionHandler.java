@@ -6,11 +6,14 @@ import java.io.StringWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+	private static final Log LOGGER = LogFactory.getLog(GlobalExceptionHandler.class);
 	
 	//받아야할 클래스(Exception이 발생하는 모든 class)
 	@ExceptionHandler(Exception.class)
@@ -20,6 +23,7 @@ public class GlobalExceptionHandler {
 		//1.로깅 - 파일로 남겨야함.
 		StringWriter errors = new StringWriter();
 		e.printStackTrace(new PrintWriter(errors)); //어떤 곳에서 발생했는지 알려줌
+		LOGGER.error(errors.toString());
 		
 		//2. 요청 구분 (jsp인지 json 인지)
 		
