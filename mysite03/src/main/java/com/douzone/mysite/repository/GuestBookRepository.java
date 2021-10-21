@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.douzone.mysite.exception.GuestbookRepositoryException;
@@ -16,6 +19,8 @@ import com.douzone.mysite.vo.GuestBookVo;
 
 @Repository
 public class GuestBookRepository {
+	@Autowired
+	private DataSource dataSource;
 	
 	public boolean delete(GuestBookVo vo) {
 		// TODO Auto-generated method stub
@@ -23,7 +28,7 @@ public class GuestBookRepository {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			//3. SQL 준비
 			String sql = "delete from guestbook where no = ? and password =?";
 			pstmt = conn.prepareStatement(sql);
@@ -62,7 +67,7 @@ public class GuestBookRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			//3. SQL 준비
 			String sql = "select no, name, date_format(reg_date,'%Y/%m/%d %H:%i:%s'), message from guestbook order by reg_date desc";
 			pstmt = conn.prepareStatement(sql);
@@ -113,7 +118,7 @@ public class GuestBookRepository {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			//3. SQL 준비
 			String sql = "insert into guestbook values(null,?,?,?,now())";
 			pstmt = conn.prepareStatement(sql);
@@ -146,23 +151,5 @@ public class GuestBookRepository {
 		return result;
 	}//end insert
 	
-	//Connection
-	private Connection getConnection() throws SQLException {
-		Connection conn = null;
-		try {
-			//1. JDBC 드라이버 로딩
-			Class.forName("org.mariadb.jdbc.Driver");
-			//2. 연결하기
-			//   연결 url 필요
-			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf-8";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
-//			System.out.println("DB 연결 성공");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("드라이버 로딩 실패 : "+e);
-		}
 
-		return conn;
-	}// end Connection
-	
 }
