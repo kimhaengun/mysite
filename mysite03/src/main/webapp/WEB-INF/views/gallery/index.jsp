@@ -132,60 +132,7 @@ $(function(){
 								title="삭제">삭제</a>
 						</li>
 						
-						<li>
-							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im8.jpg"
-								data-lightbox="gallery"
-								class="image"
-								style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im8.jpg')">&nbsp;</a>
-								
-							<a	href="${pageContext.request.contextPath }/gallery/delete/8"
-								class="del-button"
-								title="삭제">삭제</a>
-						</li>
-						
-						<li>
-							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im9.jpg"
-								data-lightbox="gallery"
-								class="image"
-								style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im9.jpg')">&nbsp;</a>
-								
-							<a	href="${pageContext.request.contextPath }/gallery/delete/9"
-								class="del-button"
-								title="삭제">삭제</a>
-						</li>
-						
-						<li>
-							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im10.jpg"
-								data-lightbox="gallery"
-								class="image"
-								style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im10.jpg')">&nbsp;</a>
-								
-							<a	href="${pageContext.request.contextPath }/gallery/delete/10"
-								class="del-button"
-								title="삭제">삭제</a>
-						</li>
-						
-						<li>
-							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im11.jpg"
-								data-lightbox="gallery"
-								class="image"
-								style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im11.jpg')">&nbsp;</a>
-								
-							<a	href="${pageContext.request.contextPath }/gallery/delete/11"
-								class="del-button"
-								title="삭제">삭제</a>
-						</li>
-						
-						<li>
-							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im12.jpg"
-								data-lightbox="gallery"
-								class="image"
-								style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im12.jpg')">&nbsp;</a>
-								
-							<a	href="${pageContext.request.contextPath }/gallery/delete/12"
-								class="del-button"
-								title="삭제">삭제</a>
-						</li>																														
+																													
 		
 						<li>
 							<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im13.jpg"
@@ -218,7 +165,20 @@ $(function(){
 							<a	href="${pageContext.request.contextPath }/gallery/delete/15"
 								class="del-button"
 								title="삭제">삭제</a>
-						</li>																																				
+						</li>
+						
+						<c:forEach items="${vo }" var="vo">
+							<li>
+								<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im15.jpg"
+									data-lightbox="gallery"
+									class="image"
+									style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im15.jpg')">&nbsp;</a>
+								
+								<a	href="${pageContext.request.contextPath }/gallery/delete/15"
+									class="del-button"
+									title="삭제">삭제</a>
+							</li>
+						</c:forEach>																																				
 				</ul>	
 			</div>
 

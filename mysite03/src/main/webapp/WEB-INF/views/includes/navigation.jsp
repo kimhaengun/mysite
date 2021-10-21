@@ -5,5 +5,6 @@
 		<li><a href="<%=request.getContextPath()%>">김행운</a></li>
 		<li><a href="<%=request.getContextPath()%>/guestbook">방명록</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/1">게시판</a></li>
+		<li><a href="<%=request.getContextPath()%>/gallery">갤러리</a></li>
 	</ul>
 </div>
