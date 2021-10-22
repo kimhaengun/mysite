@@ -83,8 +83,10 @@ public class BoardController {
 
 		return "redirect:/board/1";
 	}
+	
 	@RequestMapping(value= "/write")
 	public String write() {
+		
 		return "board/write";
 	}
 	@RequestMapping(value= "/write",method = RequestMethod.POST)
