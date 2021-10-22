@@ -66,23 +66,12 @@ public class BoardService {
 		}
 		count.setPage(pno);
 		count.setFirstViewCount(pno);
-		count.setEndViewCount((count.getFirstViewCount()-1)+5);
-		return count;
-	}
-	public PageVo findcounts(Long pno,Long firstView) {
-		// TODO Auto-generated method stub
-		PageVo count = boardRepository.findcount();
-		System.out.println("총 게시물 갯수 : "+count.toString());
-		Long totalcount = count.getTotalCount();
-		if(totalcount % 5 >0) {
-			Long viewCount = totalcount/5+1;
-			count.setViewCount(viewCount);
-		}else {
-			Long viewCount = totalcount/5;
-			count.setViewCount(viewCount);
+		if(count.getFirstViewCount() == 2) {
+			count.setFirstViewCount(1L);
 		}
-		count.setPage(pno);
-		count.setFirstViewCount(firstView);
+		if(count.getFirstViewCount() >= 3) {
+			count.setFirstViewCount(pno-2);
+		}
 		count.setEndViewCount((count.getFirstViewCount()-1)+5);
 		return count;
 	}

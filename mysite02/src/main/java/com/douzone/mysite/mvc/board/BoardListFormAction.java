@@ -57,6 +57,13 @@ public class BoardListFormAction implements Action {
 		else {
 			
 			vo.setFirstViewCount(lpage);
+			if(vo.getFirstViewCount() == 2) {
+				vo.setFirstViewCount(1L);
+			}
+			if(vo.getFirstViewCount() >= 3) {
+				vo.setFirstViewCount(lpage-2);
+			}
+			
 			vo.setEndViewCount((vo.getFirstViewCount()-1)+5);
 			MvcUtil.forward("board/list", request, response);
 		}

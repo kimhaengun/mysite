@@ -51,13 +51,10 @@ public class UserController {
 		return "user/update";
 	}
 	
+	@Auth
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
-	public String update(HttpSession session,UserVo userVo) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		//주소 접근 제어 (Access Control List)
-		if(authUser == null) {
-			return "redirect:/";
-		}
+	public String update(@AuthUser UserVo authUser,UserVo userVo) {
+		
 		userVo.setNo(authUser.getNo());
 		userService.updateUser(userVo);
 		
