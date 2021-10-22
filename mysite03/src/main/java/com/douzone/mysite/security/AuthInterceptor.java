@@ -35,6 +35,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		//   TYPE(Class)에 있는지 확인
 		if(auth == null) {
 			//과제
+//			auth = handlerMethod
 		}
 		
 		//5. Type(class)과 method에 @Auth가 적용 안되어 있는 경우는
@@ -60,7 +61,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		String role = auth.role();
 		
 		//8.권한 체크 (과제)
-		
+		// user는 admin페이지 접근 불가능 / admin은 user,admin페이지 모두 접근 가능
 		
 		return true;
 	}

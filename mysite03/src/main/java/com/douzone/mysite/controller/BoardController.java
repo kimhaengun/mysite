@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.mysite.security.Auth;
+import com.douzone.mysite.security.AuthUser;
 import com.douzone.mysite.service.BoardService;
 import com.douzone.mysite.vo.BoardVo;
 import com.douzone.mysite.vo.PageVo;
@@ -46,8 +47,9 @@ public class BoardController {
 		return "board/list";
 	}
 	
+	@Auth
 	@RequestMapping(value = "/delete/{no}")
-	public String delete(@PathVariable("no")Long no) {
+	public String delete(@AuthUser UserVo authUser, @PathVariable("no")Long no) {
 			boardService.delete(no);	
 		return "redirect:/board/1";
 	}
