@@ -65,31 +65,50 @@
 					</c:forEach>
 					</ul>
 				</div>
-
+				
 				<!-- pager 추가 / 이게 메인-->					
 				<div class="pager">
 					<ul>
 					<!-- 이전 버튼 -->
-					<c:if test="${page.firstViewCount > 1 }">
+					<c:if test="${page.firstViewCount > 3 || page.page > 1}">
 						<a href="${pageContext.request.contextPath }/board/${page.page}/e/${page.firstViewCount-1}">이전</a>
 					</c:if>
 					
-					<!-- 페이지 수 -->					
+					<!-- 페이지 수 -->
+					
+					<c:if test="${page.page < 3 }">
 					<c:forEach  var ="i" begin="${page.firstViewCount }" end="${page.endViewCount }">
 						<c:choose>
-						
 							<c:when test="${page.viewCount >= i }">
 								<li><a href="${pageContext.request.contextPath }/board/${i}">${i }</a></li>
 							</c:when>
-							
+					
 							<c:otherwise>
 							<c:if test="${page.viewCount < i }">
 									<li>${i }</li>
 							</c:if>
 							</c:otherwise>
-							
 						</c:choose>
 					</c:forEach>
+					
+					</c:if>
+					
+					<c:if test="${page.page >= 3 }">
+					<c:forEach  var ="i" begin="${page.firstViewCount-2 }" end="${page.endViewCount-2 }">
+						<c:choose>
+							<c:when test="${page.viewCount >= i }">
+								<li><a href="${pageContext.request.contextPath }/board/${i}">${i }</a></li>
+							</c:when>
+					
+							<c:otherwise>
+							<c:if test="${page.viewCount < i }">
+									<li>${i }</li>
+							</c:if>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					
+					</c:if>					
 					
 					<!-- 다음 버튼 -->
 					<c:if test="${page.firstViewCount < page.viewCount }">
@@ -97,6 +116,7 @@
 					</c:if>
 					</ul>
 				</div>
+				
 								
 				<c:if test="${not empty authUser }">
 				<div class="bottom">
