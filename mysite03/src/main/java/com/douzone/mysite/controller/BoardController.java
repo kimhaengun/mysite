@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.douzone.mysite.security.Auth;
 import com.douzone.mysite.service.BoardService;
 import com.douzone.mysite.vo.BoardVo;
 import com.douzone.mysite.vo.PageVo;
@@ -84,6 +85,7 @@ public class BoardController {
 		return "redirect:/board/1";
 	}
 	
+	@Auth
 	@RequestMapping(value= "/write")
 	public String write() {
 		
