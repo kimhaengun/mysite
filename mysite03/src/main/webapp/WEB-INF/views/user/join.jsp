@@ -13,27 +13,25 @@
 </script>
 
 <script type="text/javascript">
-setTimeout(function(){
-	//ajax
-	
-	$.ajax({
-		url: "/mysite03/msg02",
-		type: "post",
-		dataType: "json",
-		success: function(response){
-			console.log(response);
-			$p = $("#test");
-			$p.html("<strong>"+response+"</strong>");			
-		}
-	});
-	
-/* 	$p = $("#test");
-	$p.html("<strong>hi</strong>");
- */},3000);
-for(i = 0; i<5; i++){ 
-	console.log('i :' +i);
 
-}
+$(function(){
+	$("#btn-check-email").click(function(){
+		var email = $("#email").val();
+		if(email == ''){
+			return;
+		}
+		console.log(email);
+		$.ajax({
+			url: "${pageContext.request.contextPath }/user/checkemail?email="+email,
+			type: "get",
+			dataType: "json",
+			success: function(response){
+				console.log(response);
+			}
+		});
+	});
+});
+
 </script>
 </head>
 <body>
@@ -48,7 +46,7 @@ for(i = 0; i<5; i++){
 
 					<label class="block-label" for="email">이메일</label>
 					<input id="email" name="email" type="text" value="">
-					<input type="button" value="중복체크">
+					<input type="button" id="btn-check-email" value="중복체크">
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">
