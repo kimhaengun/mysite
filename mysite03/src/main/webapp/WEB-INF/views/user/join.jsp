@@ -34,7 +34,8 @@ $(function(){
 					$("#email").focus(); */
 					return;
 				}else{
-					
+					$("#btn-check-email").hide();
+					$("#img-check-email").show();
 				}
 			}
 		});
@@ -56,6 +57,8 @@ $(function(){
 					<label class="block-label" for="email">이메일</label>
 					<input id="email" name="email" type="text" value="">
 					<input type="button" id="btn-check-email" value="중복체크">
+					<img alt="" style="width: 16px; display: none;" id="img-check-email" 
+						src="${pageContext.request.contextPath }/assets/images/check.png"/>
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">
