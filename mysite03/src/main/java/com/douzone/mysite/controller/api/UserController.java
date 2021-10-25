@@ -8,18 +8,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.douzone.mysite.security.Auth;
 import com.douzone.mysite.service.UserService;
 import com.douzone.mysite.vo.UserVo;
 
-@Controller("userApiController")
+@RestController("userApiController")
 @RequestMapping("/user/api")
 public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@ResponseBody
+//	@ResponseBody
 	@RequestMapping("/checkemail")
 	public Map<String,Object> checkemail(
 			@RequestParam(value = "email",required = true,defaultValue = "") String email) {
