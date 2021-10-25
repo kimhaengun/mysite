@@ -18,44 +18,10 @@ public class BoardService {
 		Long no = (pno-1)*5;
 		return boardRepository.findAll(no);
 	}
-
-	public void delete(Long no) {
-		// TODO Auto-generated method stub
-		boardRepository.delete(no);
-	}
-
-	public BoardVo view(Long no) {
-		return boardRepository.findByTableNo(no);
-	}
-
-	public boolean update(BoardVo vo) {
-		// TODO Auto-generated method stub
-		return boardRepository.update(vo);
-	}
-
-	public boolean write(BoardVo vo) {
-		// TODO Auto-generated method stub
-		return boardRepository.insert(vo);
-	}
-
-	public boolean viewcount(Long no) {
-		// TODO Auto-generated method stub
-		return boardRepository.hitupdate(no);
-	}
-
-	public BoardVo reply(Long no) {
-		// TODO Auto-generated method stub
-		return boardRepository.findByTableNo(no);
-	}
-
-	public void replyadd(BoardVo vo) {
-		// TODO Auto-generated method stub
-		boardRepository.replyInsert(vo);
-	}
+	
 	public PageVo findcount(Long pno) {
 		// TODO Auto-generated method stub
 		PageVo count = boardRepository.findcount();
-		System.out.println("총 게시물 갯수 : "+count.toString());
 		Long totalcount = count.getTotalCount();
 		if(totalcount % 5 >0) {
 			Long viewCount = totalcount/5+1;
@@ -75,4 +41,39 @@ public class BoardService {
 		count.setEndViewCount((count.getFirstViewCount()-1)+5);
 		return count;
 	}
+	public void delete(Long no) {
+		// TODO Auto-generated method stub
+		boardRepository.delete(no);
+	}
+
+	public BoardVo view(Long no) {
+		return boardRepository.findByTableNo(no);
+	}
+
+	public boolean write(BoardVo vo) {
+		// TODO Auto-generated method stub
+		return boardRepository.insert(vo);
+	}
+	
+	public boolean viewcount(Long no) {
+		// TODO Auto-generated method stub
+		return boardRepository.hitupdate(no);
+	}
+	
+	public boolean update(BoardVo vo) {
+		// TODO Auto-generated method stub
+		return boardRepository.update(vo);
+	}
+
+	public BoardVo reply(Long no) {
+		// TODO Auto-generated method stub
+		return boardRepository.findByTableNo(no);
+	}
+
+	public void replyadd(BoardVo vo) {
+		// TODO Auto-generated method stub
+		boardRepository.replyInsert(vo);
+		boardRepository.replyUpdate(vo);
+	}
+	
 }
