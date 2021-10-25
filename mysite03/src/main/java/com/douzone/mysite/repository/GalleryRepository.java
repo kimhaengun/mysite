@@ -12,10 +12,17 @@ import com.douzone.mysite.vo.GalleryVo;
 public class GalleryRepository {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private SqlSession sqlSession;
 	
 	public List<GalleryVo> list() {
-		return sqlsession.selectList("list");
+		return sqlSession.selectList("gallery.list");
 	}
 
+	public Boolean insert(GalleryVo vo) {
+		return 1 == sqlSession.insert("gallery.insert", vo);
+	}
+
+	public Boolean delete(Long no) {
+		return 1 == sqlSession.delete("gallery.delete", no);
+	}
 }

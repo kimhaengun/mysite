@@ -63,8 +63,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		//8.권한 체크 (과제)
 		// user는 admin페이지 접근 불가능 / admin은 user,admin페이지 모두 접근 가능
 
-		if(role.equals("ADMIN")) {
-			response.sendRedirect(request.getContextPath()+"");
+		if("ADMIN".equals(authUser.getRole()) == false) {
+			response.sendRedirect(request.getContextPath());
 			return false;
 		}
 		if(role.equals("USER") ) {
