@@ -34,6 +34,11 @@ public class UserRepository {
 		return sqlSession.selectOne("user.findByNo",no);
 	}
 	
+	public UserVo findByEmail(String email) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectOne("user.findByEmail",email);
+	}
 	
 	public UserVo findByEmailAndPassword(String email,String password)  {
 		// TODO Auto-generated method stub
@@ -50,5 +55,6 @@ public class UserRepository {
 		int count = sqlSession.insert("user.insert",vo);
 		return count == 1;
 	}//end insert	
+
 
 }

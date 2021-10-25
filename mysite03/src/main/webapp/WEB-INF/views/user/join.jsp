@@ -22,11 +22,20 @@ $(function(){
 		}
 		console.log(email);
 		$.ajax({
-			url: "${pageContext.request.contextPath }/user/checkemail?email="+email,
+			url: "${pageContext.request.contextPath }/user/api/checkemail?email="+email,
 			type: "get",
 			dataType: "json",
 			success: function(response){
 				console.log(response);
+				if(response.exist){
+					alert("존재하는 이메일이오 바꾸거라");
+					$("#email").val("").focus();
+/* 					$("#email").val("");
+					$("#email").focus(); */
+					return;
+				}else{
+					
+				}
 			}
 		});
 	});

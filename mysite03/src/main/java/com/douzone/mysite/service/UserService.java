@@ -21,6 +21,10 @@ public class UserService {
 		return userRepository.findByNo(no);
 	}
 	
+	public UserVo getUser(String email) {
+		// TODO Auto-generated method stub
+		return userRepository.findByEmail(email);
+	}
 	
 	public UserVo getUser(String email, String password) {
 		
@@ -31,5 +35,7 @@ public class UserService {
 		// TODO Auto-generated method stub
 		userRepository.update(userVo);
 	}
+
+
 	
 }
