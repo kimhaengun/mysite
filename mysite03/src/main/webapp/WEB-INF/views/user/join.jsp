@@ -17,13 +17,13 @@ setTimeout(function(){
 	//ajax
 	
 	$.ajax({
-		url: "/mysite03/hello",
-		type: "get",
+		url: "/mysite03/msg02",
+		type: "post",
 		dataType: "json",
 		success: function(response){
 			console.log(response);
 			$p = $("#test");
-			$p.html("<strong>hi</strong>");			
+			$p.html("<strong>"+response+"</strong>");			
 		}
 	});
 	
