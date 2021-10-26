@@ -51,7 +51,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect(request.getContextPath()+"/user/login");
 			return false;			
 		}
+		
+		//현재 세션 UserVo 주입
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
 		if(authUser == null) {
 			response.sendRedirect(request.getContextPath()+"/user/login");
 			return false;
@@ -62,8 +65,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		
 		//8.권한 체크 (과제)
 		// user는 admin페이지 접근 불가능 / admin은 user,admin페이지 모두 접근 가능
-
-		if("ADMIN".equals(authUser.getRole()) == false) {
+		
+		//현재 유저의 권한 체크
+		String userRole = authUser.getRole();
+		
+		if("ADMIN".equals(userRole) == false) {
 			response.sendRedirect(request.getContextPath());
 			return false;
 		}

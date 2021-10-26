@@ -1,12 +1,20 @@
 package com.douzone.mysite.vo;
 
 public class GalleryVo {
+	private Long no;
 	private String comments;
 	private String url;
 	
+	
 	@Override
 	public String toString() {
-		return "GalleryVo [comments=" + comments + ", url=" + url + "]";
+		return "GalleryVo [no=" + no + ", comments=" + comments + ", url=" + url + "]";
+	}
+	public Long getNo() {
+		return no;
+	}
+	public void setNo(Long no) {
+		this.no = no;
 	}
 	public String getComments() {
 		return comments;
