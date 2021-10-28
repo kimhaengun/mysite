@@ -36,15 +36,13 @@ public class BoardController {
 		model.addAttribute("list",list);
 		return "board/list";
 	}
-	
-	@Auth
+
 	@RequestMapping(value = "/delete/{no}")
 	public String delete(@AuthUser UserVo authUser, @PathVariable("no")Long no) {
 			boardService.delete(no);	
 		return "redirect:/board/1";
 	}
 	
-	@Auth
 	@RequestMapping(value = "/delete")
 	public String delete(@AuthUser UserVo authUser) {
 		return "";
@@ -58,7 +56,6 @@ public class BoardController {
 		return "board/view";
 	}
 	
-	@Auth
 	@RequestMapping(value = "/reply/{no}")
 	public String reply(@AuthUser UserVo authUser,@PathVariable("no")Long no,Model model) {
 		BoardVo vo = boardService.reply(no);
@@ -73,7 +70,6 @@ public class BoardController {
 	}
 	
 
-	@Auth
 	@RequestMapping(value = "/update/{no}")
 	public String update(@AuthUser UserVo authUser, @PathVariable("no")Long no,Model model) {
 		BoardVo boardVo = boardService.view(no);
@@ -81,7 +77,6 @@ public class BoardController {
 		return "board/modify";
 	}
 	
-	@Auth
 	@RequestMapping(value = "/update")
 	public String update(@AuthUser UserVo authUser, BoardVo boardVo,Model model) {
 		boardService.update(boardVo);
@@ -89,14 +84,12 @@ public class BoardController {
 		return "redirect:/board/1";
 	}
 	
-	@Auth
 	@RequestMapping(value= "/write")
 	public String write(@AuthUser UserVo authUser) {
 		
 		return "board/write";
 	}
 	
-	@Auth
 	@RequestMapping(value= "/write",method = RequestMethod.POST)
 	public String write(@AuthUser UserVo authUser, BoardVo vo) {
 		boardService.write(vo);

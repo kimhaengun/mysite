@@ -72,8 +72,8 @@ public class BoardService {
 
 	public void replyadd(BoardVo vo) {
 		// TODO Auto-generated method stub
-		boardRepository.replyInsert(vo);
 		boardRepository.replyUpdate(vo);
+		boardRepository.replyInsert(vo);
 	}
 	
 }
