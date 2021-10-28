@@ -51,7 +51,7 @@
 		<div id="content">
 			<div id="gallery">
 				<div>
-					<h1 style="background: url('${pageContext.request.contextPath }/assets/images/gallery.png') 0 0 no-repeat">갤러리</h1>
+					<h1 style="background: url('${pageContext.request.contextPath }/assets/images/gallery.png') no-repeat 0 0 / 35px">갤러리</h1>
 					<c:if test='${not empty authUser && authUser.role == "ADMIN" }'>
 						<a href="" id="upload-image">이미지 올리기</a>
 					</c:if>
@@ -65,7 +65,7 @@
 								style="background-image:url('${pageContext.request.contextPath }${vo.url }">&nbsp;</a>
 							<c:if test='${not empty authUser && authUser.role == "ADMIN" }'>	
 								<a	href="${pageContext.request.contextPath }/gallery/delete/${vo.no }"
-									class="del-button" style="	background: url('${pageContext.request.contextPath }/assets/images/delete-image.png') 0 0 no-repeat;"
+									style="	background: url('${pageContext.request.contextPath }/assets/images/delete-image.png') no-repeat 0 0 / 18px" class="del-button" 
 									title="삭제">삭제</a>
 							</c:if>		
 						</li>						
