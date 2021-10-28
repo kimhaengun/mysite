@@ -84,4 +84,14 @@ public class UserController {
 		return "redirect:/user/update";
 	}	
 	
+	//요청이 있어야 인터셉터가 발동함
+	@RequestMapping(value = "/auth",method = RequestMethod.POST)
+	public void auth() {
+		
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public void logout() {
+		
+	}
 }
