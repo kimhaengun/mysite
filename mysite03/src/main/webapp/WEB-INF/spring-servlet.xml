@@ -44,6 +44,7 @@
 
 	<!-- 서블릿 컨테이너(tomcat)의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
+	
 	<!-- Interceptor 설정 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -63,11 +64,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-
-	<!-- mvc url-resource mapping -->
-	<mvc:resources mapping="/gallery/images/**"
-		location="file:/upload-mysite/" />
-
 	<!-- ViewResolver 설정 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -77,6 +73,10 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
+	
+	<!-- mvc url-resource mapping -->
+	<mvc:resources mapping="/gallery/images/**"
+		location="file:/upload-mysite/" />
 
 	<!-- 멀티파트 리졸버 -->
 	<bean id="multipartResolver"
