@@ -78,8 +78,10 @@ $(function(){
 					<label class="block-label" for="email">이메일</label>
 					<form:input path="email"/>
 					<input type="button" id="btn-check-email" value="중복체크">
+					
 					<img alt="" style="width: 16px; display: none;" id="img-check-email" 
 						src="${pageContext.request.contextPath }/assets/images/check.png"/>
+					
 					<p style="text-align: left; padding-left: 0; color: red">
 					<form:errors path="email"/>
 					</p>
