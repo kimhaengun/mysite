@@ -26,6 +26,12 @@ public class GuestBookController {
 		return "guestbook/list";
 	}
 	
+	@RequestMapping(value = {"/spa"})
+	public String spa(Model model) {
+
+		return "guestbook/index-spa";
+	}
+	
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	public String write(GuestBookVo vo) {
 		guestBookService.add(vo);

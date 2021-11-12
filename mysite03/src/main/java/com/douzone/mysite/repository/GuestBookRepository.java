@@ -30,11 +30,11 @@ public class GuestBookRepository {
 		return count == 1;
 	}	
 	
-	public boolean insert(GuestBookVo vo) {
+	public void insert(GuestBookVo vo) {
 		// TODO Auto-generated method stub
-		int count = sqlSession.insert("guestbook.insert",vo);
-		System.out.println(vo);
-		return count == 1;
+//		int count = sqlSession.insert("guestbook.insert",vo);
+//		System.out.println(vo);
+//		return count == 1;
 	}//end insert
 	
 
