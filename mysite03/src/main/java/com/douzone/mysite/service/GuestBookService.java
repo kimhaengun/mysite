@@ -17,9 +17,9 @@ public class GuestBookService {
 		return guestBookRepository.findAll();
 	}
 
-	public void add(GuestBookVo vo) {
+	public GuestBookVo add(GuestBookVo vo) {
 		// TODO Auto-generated method stub
-		guestBookRepository.insert(vo);
+		return guestBookRepository.insert(vo);
 	}
 
 	public void delete(GuestBookVo vo) {

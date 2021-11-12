@@ -10,73 +10,108 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/guestbook-spa.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/ejs/ejs.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
-var messageBox = function(title,message, callback){ //callback
-	$('#dialog-message').attr('title',title);
+<script>
+var listitemEJS = new EJS({
+	url: '${pageContext.request.contextPath }/assets/ejs/listitem-template.ejs'
+});
+
+var messageBox = function(title, message, callback) {
+	$('#dialog-message').attr('title', title);
 	$('#dialog-message p').text(message);
 	
 	$('#dialog-message').dialog({
-		//모달띄우기
-		modal:true,
+		//모달창 띄우기
+		modal: true,
 		buttons: {
-			"확인": function(){
-				console.log("확인");	
-				$(this).dialog("close");
+			"확인": function() {
+				$(this).dialog('close');
 			}
 		},
-		close : callback
-	});
+		close: callback
+	});	
 }
 
 $(function(){
-	//삭제 다이알로그 객체 만들기
+	// 삭제 다이알로그 객체 만들기
 	var dialogDelete = $('#dialog-delete-form').dialog({
 		autoOpen: false,
 		modal: true,
 		buttons: {
-			"삭제": function(){
-				//ajax 삭제
-				$('.validateTips error').show();
-				
+			"삭제": function() {
+				// ajax 삭제....
 			},
-			"취소": function(){
-				(this).dialog('close');
+			"취소": function() {
+				$(this).dialog('close');
 			}
 		}
 	});
-
-//  글 삭제 버튼(Live event)
-	$(document).on('click','#list-guestbook li a', click(function(){
+	
+	// 글 삭제 버튼 (Live Event)
+	$(document).on('click', '#list-guestbook li a', function(event){
 		event.preventDefault();
 		
-		//게시물no가져오기
+		//게시물 no 가져오기
 		var no = $(this).data('no');
 		$("#hidden-no").val(no);
 		
 		dialogDelete.dialog('open');
 	});
-	});
 	
 	
-	//form validation
+	// form validation
 	$("#add-form").submit(function(event){
-		//submit 막기
 		event.preventDefault();
-		var guestvook = {};
-		//이름
+		
+		// 이름
 		var name = $("#input-name").val();
-		if(!name){
-			messageBox('보내기 오류','이름 입력좀', function(){
-				$('#input-name').focus();
+		if(!name) {
+			messageBox('새글 작성', '이름은 반드시 입력해야 합니다.', function(){
+				$("#input-name").focus();	
 			});
 			return;
 		}
-		console.log("ajax 통신하기(insert)");
-	});
+		
+		// 비밀번호
+
+		// 내용
+		
+		
+		console.log("ajax insert");
+		data={
+
+		}		
+		data.name = $("#input-name").val();
+		data.password = $("#input-password").val();
+		data.message = $("#tx-content").val();
+		
+		console.log(data);
+		
+		$.ajax({
+			url: '${pageContext.request.contextPath }/api/gb/add',
+			method: 'post',
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: function(response){
+				console.log(response);
+				if(response.result != 'success'){
+					console.error(response.message);
+					return
+				}
+				var html = listitemEJS.render(response.data);
+				$('#list-guestbook').prepend(html);
+				$("#add-form")[0].reset();
+				
+			}
+			
+		}); //end ajax
+		
+	});//end submit
 	
-	//첫번쨰 리스트 가져오기
 	
+	// 첫번째 리스트 가져오기
 });
 </script>
 </head>
@@ -86,12 +121,13 @@ $(function(){
 		<div id="content">
 			<div id="guestbook">
 				<h1>방명록</h1>
-				<form id="add-form" action="https://www.naver.com" method="post">
+				<form id="add-form" action="" method="post">
 					<input type="text" id="input-name" placeholder="이름">
 					<input type="password" id="input-password" placeholder="비밀번호">
 					<textarea id="tx-content" placeholder="내용을 입력해 주세요."></textarea>
 					<input type="submit" value="보내기" />
 				</form>
+				
 				<ul id="list-guestbook">
 
 					<li data-no='2'>
@@ -127,7 +163,6 @@ $(function(){
 									
 				</ul>
 			</div>
-			
 			<div id="dialog-delete-form" title="메세지 삭제" style="display:none">
   				<p class="validateTips normal">작성시 입력했던 비밀번호를 입력하세요.</p>
   				<p class="validateTips error" style="display:none">비밀번호가 틀립니다.</p>
@@ -137,11 +172,9 @@ $(function(){
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
   				</form>
 			</div>
-			
-			<!-- valid modal -->
-			<div id="dialog-message" title="보내기 오류" style="display:none">
-  				<p>이름좀 넣어주세요</p>
-			</div>						
+			<div id="dialog-message" title="" style="display:none">
+  				<p></p>
+			</div>	
 		</div>
 		<c:import url="/WEB-INF/views/includes/navigation.jsp">
 			<c:param name="menu" value="guestbook-ajax"/>
